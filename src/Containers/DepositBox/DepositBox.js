@@ -15,15 +15,14 @@ class DepositBox extends React.Component {
     this.handleDisplayBacklight();
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     document.removeEventListener("keydown", el => this.handleKeyPress(el.key));
   }
 
   componentDidUpdate(prevState) {
-    console.log(prevState.isTouched);
     if (this.props.isTouched) {
       this._timer = setTimeout(() => {
-        this.props.reset();
+        this.props.handleAutoSubmit(this.props.displayMsg, this.props.isLocked);
       }, 2000);
     }
     clearTimeout(this._backlightTimer);
@@ -39,12 +38,12 @@ class DepositBox extends React.Component {
     if (!this.props.isTouched) {
       this.props.reset();
     }
-    clearTimeout(this._timer);
-    clearTimeout(this._backlightTimer);
     if (el === "l" || el === "L") {
       return this.props.handleLock();
     }
     if ((!isNaN(el) && el !== " ") || el === "*") {
+      clearTimeout(this._timer);
+      clearTimeout(this._backlightTimer);
       return this.props.handleUserInput(el);
     }
   };
@@ -76,7 +75,9 @@ const mapDispatchToProps = dispatch => {
     handleUserInput: value => dispatch(actions.handleUserInput(value)),
     handleLock: () => dispatch(actions.handleLock()),
     reset: () => dispatch(actions.reset()),
-    handleBacklight: () => dispatch(actions.handleBacklight())
+    handleBacklight: () => dispatch(actions.handleBacklight()),
+    handleAutoSubmit: (code, status) =>
+      dispatch(actions.handleAutoSubmit(code, status))
   };
 };
 

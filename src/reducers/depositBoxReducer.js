@@ -4,6 +4,7 @@ const initialState = {
   isLocked: false,
   isTouched: false,
   backlightOn: true,
+  code: null,
   displayMsg: "Ready"
 };
 
@@ -20,7 +21,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLocked: true,
-        isTouched: false,
         displayMsg: ""
       };
     case actionTypes.HANDLE_UNLOCK:
@@ -39,12 +39,14 @@ export default (state = initialState, action) => {
     case actionTypes.ERROR:
       return {
         ...state,
-        displayMsg: "Error"
+        displayMsg: "Error",
+        isTouched: false
       };
     case actionTypes.LOCKING:
       return {
         ...state,
-        displayMsg: "Locking..."
+        displayMsg: "Locking...",
+        isTouched: false
       };
     case actionTypes.UNLOCKING:
       return {

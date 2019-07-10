@@ -1,5 +1,21 @@
 import * as actionTypes from "./actionTypes";
 
+export const handleAutoSubmit = (code, status) => {
+  return dispatch => {
+    if (code.length !== 6) {
+      dispatch(handleError());
+      setTimeout(() => {
+        dispatch(reset());
+      }, 1000);
+    } else if (!status) {
+      dispatch(handleLocking());
+      setTimeout(() => {
+        dispatch(handleLock());
+      }, 3000);
+    }
+  };
+};
+
 export const handleUserInput = value => {
   return {
     type: actionTypes.HANDLE_INPUT,
