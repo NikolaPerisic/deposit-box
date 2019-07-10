@@ -16,10 +16,11 @@ class DepositBox extends React.Component {
   }
 
   handleKeyPress = el => {
-    if (el === "l") el = "L";
-    if ((!isNaN(el) && el !== " ") || el === "L" || el === "*") {
-      console.log(el);
-      this.props.handleUserInput(el);
+    if (el === "l" || el === "L") {
+      return this.props.handleLock();
+    }
+    if ((!isNaN(el) && el !== " ") || el === "*") {
+      return this.props.handleUserInput(el);
     }
   };
 
@@ -45,7 +46,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    handleUserInput: value => dispatch(actions.handleUserInput(value))
+    handleUserInput: value => dispatch(actions.handleUserInput(value)),
+    handleLock: () => dispatch(actions.handleLock())
   };
 };
 

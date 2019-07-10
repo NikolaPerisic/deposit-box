@@ -6,3 +6,10 @@ export const handleUserInput = value => {
     payload: value
   };
 };
+
+export const handleLock = () => {
+  return {
+    type: actionTypes.HANDLE_LOCK,
+    payload: null
+  };
+};

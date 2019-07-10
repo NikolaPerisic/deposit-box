@@ -12,6 +12,12 @@ export default (state = initialState, action) => {
         ...state,
         displayMsg: (state.displayMsg += action.payload)
       };
+    case actionTypes.HANDLE_LOCK:
+      return {
+        ...state,
+        isLocked: true,
+        displayMsg: "Ready"
+      };
     default:
       return state;
   }
