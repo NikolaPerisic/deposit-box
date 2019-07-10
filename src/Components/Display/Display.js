@@ -4,8 +4,8 @@ import "./Display.scss";
 const display = props => {
   return (
     <div className="panel__display">
-      <p>Unlocked</p>
-      <h4>Ready</h4>
+      <p>{props.isLocked ? "Locked" : "Unlocked"}</p>
+      <h4>{props.message}</h4>
     </div>
   );
 };

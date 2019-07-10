@@ -5,7 +5,11 @@ import "./Keypad.scss";
 const keypad = props => {
   const items = keypads.map((el, ind) => {
     return (
-      <div className="keypads--item" key={ind}>
+      <div
+        className="keypads--item"
+        key={`${el}-${ind}`}
+        onClick={() => props.clickInput(el)}
+      >
         {el}
       </div>
     );
