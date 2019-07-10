@@ -20,9 +20,15 @@ class DepositBox extends React.Component {
   }
 
   componentDidUpdate(prevState) {
+    console.log(this.props.isBusy);
     if (this.props.isTouched) {
-      this._timer = setTimeout(() => {
-        this.props.handleAutoSubmit(this.props.displayMsg, this.props.isLocked);
+      this._submitTimer = setTimeout(() => {
+        this.props.handleAutoSubmit(
+          this.props.code,
+          this.props.displayMsg,
+          this.props.isLocked,
+          this.props.isBusy
+        );
       }, 2000);
     }
     clearTimeout(this._backlightTimer);
@@ -45,7 +51,7 @@ class DepositBox extends React.Component {
       );
     }
     if ((!isNaN(el) && el !== " ") || el === "*") {
-      clearTimeout(this._timer);
+      clearTimeout(this._submitTimer);
       clearTimeout(this._backlightTimer);
       return this.props.handleUserInput(el);
     }
@@ -70,6 +76,7 @@ const mapStateToProps = state => {
     isLocked: state.depositBox.isLocked,
     displayMsg: state.depositBox.displayMsg,
     isTouched: state.depositBox.isTouched,
+    isBusy: state.depositBox.isBusy,
     backlightOn: state.depositBox.backlightOn,
     code: state.depositBox.code
   };
@@ -81,8 +88,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.handleLockFromUser(userInput, status)),
     reset: () => dispatch(actions.reset()),
     handleBacklight: () => dispatch(actions.handleBacklight()),
-    handleAutoSubmit: (code, status) =>
-      dispatch(actions.handleAutoSubmit(code, status))
+    handleAutoSubmit: (code, userInput, status, isBusy) =>
+      dispatch(actions.handleAutoSubmit(code, userInput, status, isBusy))
   };
 };
 

@@ -1,8 +1,20 @@
 import * as actionTypes from "./actionTypes";
 
-export const handleAutoSubmit = (code, status) => {
+export const handleAutoSubmit = (code, userInput, status, isBusy) => {
   return dispatch => {
     console.log("in autoSubmit");
+    console.log(code, userInput, status);
+    if (code === userInput && status) {
+      dispatch(handleUnlocking());
+      setTimeout(() => {
+        dispatch(handleUnlock());
+      }, 3000);
+    } else if (!isBusy) {
+      dispatch(handleError());
+      setTimeout(() => {
+        dispatch(reset());
+      }, 1200);
+    }
   };
 };
 

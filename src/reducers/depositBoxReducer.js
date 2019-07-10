@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   isLocked: false,
   isTouched: false,
+  isBusy: false,
   backlightOn: true,
   code: null,
   displayMsg: "Ready"
@@ -27,13 +28,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLocked: false,
-        isTouched: false,
-        displayMsg: ""
+        displayMsg: "Ready"
       };
     case actionTypes.RESET:
       return {
         ...state,
         isTouched: false,
+        isBusy: false,
         displayMsg: ""
       };
     case actionTypes.ERROR:
@@ -47,12 +48,16 @@ export default (state = initialState, action) => {
         ...state,
         displayMsg: "Locking...",
         code: action.payload,
-        isTouched: false
+        isTouched: false,
+        isBusy: true
       };
     case actionTypes.UNLOCKING:
       return {
         ...state,
-        displayMsg: "Unlocking..."
+        displayMsg: "Unlocking...",
+        code: null,
+        isTouched: false,
+        isBusy: true
       };
     case actionTypes.SERVICE:
       return {
