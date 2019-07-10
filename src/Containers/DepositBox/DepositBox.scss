@@ -1,0 +1,27 @@
+.panel {
+  margin: 20px 0;
+  color: #fff;
+  background-color: #7d7d7f;
+  width: 400px;
+  height: 600px;
+  padding: 1.5rem 3rem 2rem 3rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "a a a"
+    "a a a"
+    "b b b"
+    "b b b"
+    "b b b"
+    "b b b";
+}
+@media (max-width: 680px) {
+  .panel {
+    margin: 0;
+    width: 80vw;
+  }
+}
