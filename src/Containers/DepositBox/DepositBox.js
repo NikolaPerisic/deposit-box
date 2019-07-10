@@ -39,7 +39,10 @@ class DepositBox extends React.Component {
       this.props.reset();
     }
     if (el === "l" || el === "L") {
-      return this.props.handleLock();
+      return this.props.handleLockFromUser(
+        this.props.displayMsg,
+        this.props.isLocked
+      );
     }
     if ((!isNaN(el) && el !== " ") || el === "*") {
       clearTimeout(this._timer);
@@ -67,13 +70,15 @@ const mapStateToProps = state => {
     isLocked: state.depositBox.isLocked,
     displayMsg: state.depositBox.displayMsg,
     isTouched: state.depositBox.isTouched,
-    backlightOn: state.depositBox.backlightOn
+    backlightOn: state.depositBox.backlightOn,
+    code: state.depositBox.code
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     handleUserInput: value => dispatch(actions.handleUserInput(value)),
-    handleLock: () => dispatch(actions.handleLock()),
+    handleLockFromUser: (userInput, status) =>
+      dispatch(actions.handleLockFromUser(userInput, status)),
     reset: () => dispatch(actions.reset()),
     handleBacklight: () => dispatch(actions.handleBacklight()),
     handleAutoSubmit: (code, status) =>

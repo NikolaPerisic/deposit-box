@@ -2,13 +2,20 @@ import * as actionTypes from "./actionTypes";
 
 export const handleAutoSubmit = (code, status) => {
   return dispatch => {
-    if (code.length !== 6) {
+    console.log("in autoSubmit");
+  };
+};
+
+export const handleLockFromUser = (userInput, status) => {
+  return dispatch => {
+    console.log(userInput, status);
+    if (userInput.length !== 6 || status) {
       dispatch(handleError());
       setTimeout(() => {
         dispatch(reset());
-      }, 1000);
-    } else if (!status) {
-      dispatch(handleLocking());
+      }, 1200);
+    } else if (userInput.length === 6 && !status) {
+      dispatch(handleLocking(userInput));
       setTimeout(() => {
         dispatch(handleLock());
       }, 3000);
@@ -42,9 +49,10 @@ export const handleError = () => {
     type: actionTypes.ERROR
   };
 };
-export const handleLocking = () => {
+export const handleLocking = code => {
   return {
-    type: actionTypes.LOCKING
+    type: actionTypes.LOCKING,
+    payload: code
   };
 };
 export const handleUnlocking = () => {

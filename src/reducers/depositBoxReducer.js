@@ -46,6 +46,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         displayMsg: "Locking...",
+        code: action.payload,
         isTouched: false
       };
     case actionTypes.UNLOCKING:
