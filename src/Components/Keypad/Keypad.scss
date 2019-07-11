@@ -9,6 +9,7 @@
 
   .keypads--item {
     background-color: #63636e;
+    touch-action: manipulation;
     display: flex;
     justify-content: center;
     align-items: center;
