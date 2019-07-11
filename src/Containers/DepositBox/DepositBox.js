@@ -27,7 +27,9 @@ class DepositBox extends React.Component {
           this.props.code,
           this.props.displayMsg,
           this.props.isLocked,
-          this.props.isBusy
+          this.props.isBusy,
+          this.props.service,
+          this.props.serial
         );
       }, 1200);
     }
@@ -47,6 +49,13 @@ class DepositBox extends React.Component {
     if (this.props.isBusy) return null;
     if (!this.props.isTouched) {
       this.props.reset();
+    }
+    if (
+      this.props.service &&
+      (!isNaN(el) || el !== " " || el === "*" || el === "L" || el === "l")
+    ) {
+      clearTimeout(this._submitTimer);
+      return this.props.handleUserInput(el);
     }
     if (el === "l" || el === "L") {
       return this.props.handleLockFromUser(
@@ -70,7 +79,7 @@ class DepositBox extends React.Component {
           backlight={this.props.backlightOn}
         />
         <Keypad clickInput={this.handleKeyPress} />
-        <div className="panel__serial">{this.props.serial}</div>
+        <div className="panel__serial">S/N: {this.props.serial}</div>
       </div>
     );
   }
@@ -95,8 +104,17 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.handleLockFromUser(userInput, status)),
     reset: () => dispatch(actions.reset()),
     handleBacklight: () => dispatch(actions.handleBacklight()),
-    handleAutoSubmit: (code, userInput, status, isBusy) =>
-      dispatch(actions.handleAutoSubmit(code, userInput, status, isBusy))
+    handleAutoSubmit: (code, userInput, status, isBusy, service, serial) =>
+      dispatch(
+        actions.handleAutoSubmit(
+          code,
+          userInput,
+          status,
+          isBusy,
+          service,
+          serial
+        )
+      )
   };
 };
 

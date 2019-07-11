@@ -7,7 +7,7 @@ const initialState = {
   backlightOn: true,
   code: null,
   serviceMode: false,
-  serialNo: "S/N: 4815162342",
+  serialNo: 4815162342,
   displayMsg: "Ready"
 };
 
@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
         ...state,
         isLocked: true,
         isBusy: false,
+        serviceMode: false,
         displayMsg: ""
       };
     case actionTypes.HANDLE_UNLOCK:
@@ -32,6 +33,7 @@ export default (state = initialState, action) => {
         ...state,
         isLocked: false,
         isBusy: false,
+        serviceMode: false,
         displayMsg: "Ready"
       };
     case actionTypes.RESET:
@@ -39,7 +41,6 @@ export default (state = initialState, action) => {
         ...state,
         isTouched: false,
         isBusy: false,
-        serviceMode: false,
         displayMsg: ""
       };
     case actionTypes.ERROR:
@@ -47,6 +48,7 @@ export default (state = initialState, action) => {
         ...state,
         displayMsg: "Error",
         isBusy: true,
+        serviceMode: false,
         isTouched: false
       };
     case actionTypes.LOCKING:
@@ -75,7 +77,9 @@ export default (state = initialState, action) => {
     case actionTypes.VALIDATING:
       return {
         ...state,
-        displayMsg: "Validating..."
+        displayMsg: "Validating...",
+        isTouched: false,
+        isBusy: true
       };
     case actionTypes.BACKLIGHT_OFF:
       return {

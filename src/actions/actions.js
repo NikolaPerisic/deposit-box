@@ -1,12 +1,22 @@
 import * as actionTypes from "./actionTypes";
+import axios from "axios";
 
-export const handleAutoSubmit = (code, userInput, status, isBusy) => {
+export const handleAutoSubmit = (
+  code,
+  userInput,
+  status,
+  isBusy,
+  service,
+  serial
+) => {
   return dispatch => {
     if (userInput === "000000" && status) {
-      console.log("in service dispatch");
       return dispatch(handleService());
     }
-    console.log("in auto submit");
+    console.log("service mode", service);
+    if (service) {
+      return dispatch(handleServiceMode(userInput, serial));
+    }
     if (code === userInput && status) {
       dispatch(handleUnlocking());
       setTimeout(() => {
@@ -38,9 +48,40 @@ export const handleLockFromUser = (userInput, status) => {
   };
 };
 
-export const handleServiceMode = val => {
+export const handleServiceMode = (userInput, serial) => {
   return dispatch => {
-    console.log("service mode", val);
+    console.log("service mode", userInput, serial);
+    dispatch(handleValidating());
+    setTimeout(() => {
+      dispatch(handleValidationCheck(userInput, serial));
+    }, 3000);
+  };
+};
+
+export const handleValidationCheck = (userInput, serial) => {
+  return dispatch => {
+    axios
+      .get(
+        `https://9w4qucosgf.execute-api.eu-central-1.amazonaws.com/default/CR-JS_team_M02a?c
+    ode=${userInput}`
+      )
+      .then(response => {
+        console.log(response.data.sn, serial);
+        if (response.data.sn === serial) {
+          dispatch(handleUnlocking());
+          setTimeout(() => {
+            dispatch(handleUnlock());
+          }, 3000);
+        } else {
+          dispatch(handleError());
+          setTimeout(() => {
+            dispatch(reset());
+          }, 1200);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 };
 export const handleUserInput = value => {
