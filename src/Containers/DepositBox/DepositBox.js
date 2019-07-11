@@ -29,7 +29,7 @@ class DepositBox extends React.Component {
           this.props.isLocked,
           this.props.isBusy
         );
-      }, 2000);
+      }, 1200);
     }
     clearTimeout(this._backlightTimer);
     this.handleDisplayBacklight();
@@ -37,6 +37,7 @@ class DepositBox extends React.Component {
   // function for dimming the display after 5 secs of inactivity
   handleDisplayBacklight = () => {
     this._backlightTimer = setTimeout(() => {
+      this.props.reset();
       this.props.handleBacklight();
     }, 5000);
   };

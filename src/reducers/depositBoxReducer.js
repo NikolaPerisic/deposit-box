@@ -75,7 +75,8 @@ export default (state = initialState, action) => {
     case actionTypes.BACKLIGHT_OFF:
       return {
         ...state,
-        backlightOn: false
+        backlightOn: false,
+        displayMsg: "Ready"
       };
     default:
       return state;
