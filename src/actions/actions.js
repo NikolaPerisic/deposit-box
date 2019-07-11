@@ -2,8 +2,11 @@ import * as actionTypes from "./actionTypes";
 
 export const handleAutoSubmit = (code, userInput, status, isBusy) => {
   return dispatch => {
-    console.log("in autoSubmit");
-    console.log(code, userInput, status);
+    if (userInput === "000000" && status) {
+      console.log("in service dispatch");
+      return dispatch(handleService());
+    }
+    console.log("in auto submit");
     if (code === userInput && status) {
       dispatch(handleUnlocking());
       setTimeout(() => {
@@ -35,6 +38,11 @@ export const handleLockFromUser = (userInput, status) => {
   };
 };
 
+export const handleServiceMode = val => {
+  return dispatch => {
+    console.log("service mode", val);
+  };
+};
 export const handleUserInput = value => {
   return {
     type: actionTypes.HANDLE_INPUT,

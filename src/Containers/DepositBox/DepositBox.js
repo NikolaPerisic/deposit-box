@@ -20,7 +20,7 @@ class DepositBox extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    console.log(this.props.isBusy);
+    console.log("comp did update");
     if (this.props.isTouched) {
       this._submitTimer = setTimeout(() => {
         this.props.handleAutoSubmit(
@@ -32,7 +32,9 @@ class DepositBox extends React.Component {
       }, 1200);
     }
     clearTimeout(this._backlightTimer);
-    this.handleDisplayBacklight();
+    if (this.props.backlightOn && !this.props.service) {
+      this.handleDisplayBacklight();
+    }
   }
   // function for dimming the display after 5 secs of inactivity
   handleDisplayBacklight = () => {
@@ -82,7 +84,8 @@ const mapStateToProps = state => {
     isBusy: state.depositBox.isBusy,
     backlightOn: state.depositBox.backlightOn,
     code: state.depositBox.code,
-    serial: state.depositBox.serialNo
+    serial: state.depositBox.serialNo,
+    service: state.depositBox.serviceMode
   };
 };
 const mapDispatchToProps = dispatch => {

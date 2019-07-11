@@ -6,6 +6,7 @@ const initialState = {
   isBusy: false,
   backlightOn: true,
   code: null,
+  serviceMode: false,
   serialNo: "S/N: 4815162342",
   displayMsg: "Ready"
 };
@@ -38,6 +39,7 @@ export default (state = initialState, action) => {
         ...state,
         isTouched: false,
         isBusy: false,
+        serviceMode: false,
         displayMsg: ""
       };
     case actionTypes.ERROR:
@@ -66,7 +68,9 @@ export default (state = initialState, action) => {
     case actionTypes.SERVICE:
       return {
         ...state,
-        displayMsg: "Service"
+        displayMsg: "Service",
+        serviceMode: true,
+        isTouched: false
       };
     case actionTypes.VALIDATING:
       return {
@@ -77,6 +81,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         backlightOn: false,
+        isTouched: false,
         displayMsg: "Ready"
       };
     default:
