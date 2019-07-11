@@ -6,6 +6,7 @@ const initialState = {
   isBusy: false,
   backlightOn: true,
   code: null,
+  serialNo: "S/N: 4815162342",
   displayMsg: "Ready"
 };
 

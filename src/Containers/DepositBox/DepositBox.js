@@ -68,6 +68,7 @@ class DepositBox extends React.Component {
           backlight={this.props.backlightOn}
         />
         <Keypad clickInput={this.handleKeyPress} />
+        <div className="panel__serial">{this.props.serial}</div>
       </div>
     );
   }
@@ -80,7 +81,8 @@ const mapStateToProps = state => {
     isTouched: state.depositBox.isTouched,
     isBusy: state.depositBox.isBusy,
     backlightOn: state.depositBox.backlightOn,
-    code: state.depositBox.code
+    code: state.depositBox.code,
+    serial: state.depositBox.serialNo
   };
 };
 const mapDispatchToProps = dispatch => {
