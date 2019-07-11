@@ -41,6 +41,7 @@ class DepositBox extends React.Component {
     }, 5000);
   };
   handleKeyPress = el => {
+    if (this.props.isBusy) return null;
     if (!this.props.isTouched) {
       this.props.reset();
     }

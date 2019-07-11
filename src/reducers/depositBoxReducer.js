@@ -22,12 +22,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLocked: true,
+        isBusy: false,
         displayMsg: ""
       };
     case actionTypes.HANDLE_UNLOCK:
       return {
         ...state,
         isLocked: false,
+        isBusy: false,
         displayMsg: "Ready"
       };
     case actionTypes.RESET:
@@ -41,6 +43,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         displayMsg: "Error",
+        isBusy: true,
         isTouched: false
       };
     case actionTypes.LOCKING:
