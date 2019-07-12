@@ -5,7 +5,7 @@ import Keypad from "../../Components/Keypad/Keypad";
 import { connect } from "react-redux";
 import * as actions from "../../actions/actions";
 import * as asyncActions from "../../actions/asyncActions";
-import { soundBeep, soundError } from "../../sounds/sounds";
+import { playSound } from "../../sounds/sounds";
 //
 class DepositBox extends React.Component {
   //
@@ -24,7 +24,7 @@ class DepositBox extends React.Component {
   componentDidUpdate(prevState) {
     console.log("comp did update");
     if (this.props.displayMsg === "Error") {
-      soundError();
+      playSound("error");
     }
     if (this.props.isTouched) {
       this._submitTimer = setTimeout(() => {
@@ -51,15 +51,17 @@ class DepositBox extends React.Component {
     }, 5000);
   };
   handleKeyPress = el => {
-    if (this.props.isBusy) return null;
+    if (
+      this.props.isBusy ||
+      (el !== "l" && el !== "L" && el !== "*" && isNaN(el))
+    ) {
+      return null;
+    }
+    playSound();
     if (!this.props.isTouched) {
       this.props.reset();
     }
-    soundBeep();
-    if (
-      this.props.service &&
-      (!isNaN(el) || el !== " " || el === "*" || el === "L" || el === "l")
-    ) {
+    if (this.props.service) {
       clearTimeout(this._submitTimer);
       return this.props.handleUserInput(el);
     }
@@ -69,11 +71,9 @@ class DepositBox extends React.Component {
         this.props.isLocked
       );
     }
-    if ((!isNaN(el) && el !== " ") || el === "*") {
-      clearTimeout(this._submitTimer);
-      clearTimeout(this._backlightTimer);
-      return this.props.handleUserInput(el);
-    }
+    clearTimeout(this._submitTimer);
+    clearTimeout(this._backlightTimer);
+    return this.props.handleUserInput(el);
   };
 
   render() {
