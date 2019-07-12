@@ -4,6 +4,7 @@ import Display from "../../Components/Display/Display";
 import Keypad from "../../Components/Keypad/Keypad";
 import { connect } from "react-redux";
 import * as actions from "../../actions/actions";
+import * as asyncActions from "../../actions/asyncActions";
 //
 class DepositBox extends React.Component {
   //
@@ -101,12 +102,12 @@ const mapDispatchToProps = dispatch => {
   return {
     handleUserInput: value => dispatch(actions.handleUserInput(value)),
     handleLockFromUser: (userInput, status) =>
-      dispatch(actions.handleLockFromUser(userInput, status)),
+      dispatch(asyncActions.handleLockFromUser(userInput, status)),
     reset: () => dispatch(actions.reset()),
     handleBacklight: () => dispatch(actions.handleBacklight()),
     handleAutoSubmit: (code, userInput, status, isBusy, service, serial) =>
       dispatch(
-        actions.handleAutoSubmit(
+        asyncActions.handleAutoSubmit(
           code,
           userInput,
           status,
