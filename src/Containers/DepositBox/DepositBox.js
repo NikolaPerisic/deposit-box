@@ -5,6 +5,7 @@ import Keypad from "../../Components/Keypad/Keypad";
 import { connect } from "react-redux";
 import * as actions from "../../actions/actions";
 import * as asyncActions from "../../actions/asyncActions";
+import { soundBeep, soundError } from "../../sounds/sounds";
 //
 class DepositBox extends React.Component {
   //
@@ -22,6 +23,9 @@ class DepositBox extends React.Component {
 
   componentDidUpdate(prevState) {
     console.log("comp did update");
+    if (this.props.displayMsg === "Error") {
+      soundError();
+    }
     if (this.props.isTouched) {
       this._submitTimer = setTimeout(() => {
         this.props.handleAutoSubmit(
@@ -51,6 +55,7 @@ class DepositBox extends React.Component {
     if (!this.props.isTouched) {
       this.props.reset();
     }
+    soundBeep();
     if (
       this.props.service &&
       (!isNaN(el) || el !== " " || el === "*" || el === "L" || el === "l")
