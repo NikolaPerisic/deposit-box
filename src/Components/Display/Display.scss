@@ -10,12 +10,12 @@
     "c c c c"
     "d d d d"
     "d d d d";
-  p {
+  span {
     grid-area: c;
     padding: 0.5rem;
     margin: 0;
   }
-  h4 {
+  p {
     grid-area: d;
     display: flex;
     justify-content: flex-end;
@@ -23,7 +23,7 @@
     padding: 2rem;
     overflow: hidden;
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 500;
   }
 }

@@ -10,8 +10,8 @@ const display = props => {
           : "panel__display panel__display--off"
       }
     >
-      <p>{props.isLocked ? "Locked" : "Unlocked"}</p>
-      <h4>{props.message}</h4>
+      <span>{props.isLocked ? "Locked" : "Unlocked"}</span>
+      <p>{props.message}</p>
     </div>
   );
 };
