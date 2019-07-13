@@ -1,3 +1,10 @@
+$content1: "\25b2";
+$content2: "\25c0";
+$content3: "\25b6";
+$content4: "\25bc";
+$content5: "A";
+$content6: "B";
+
 .panel__keypads {
   grid-area: b;
   display: grid;
@@ -9,14 +16,43 @@
 
   .keypads--item {
     background-color: #63636e;
+    color: #f3f3f3;
     touch-action: manipulation;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     font-size: 3rem;
     font-weight: 500;
     border-radius: 3px;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+  }
+  :nth-child(2n)::after {
+    content: "";
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #434343;
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+  }
+  :nth-child(2):after {
+    content: $content1;
+  }
+  :nth-child(4):after {
+    content: $content2;
+  }
+  :nth-child(6):after {
+    content: $content3;
+  }
+  :nth-child(8):after {
+    content: $content4;
+  }
+  :nth-child(10):after {
+    content: $content5;
+  }
+  :nth-child(12):after {
+    content: $content6;
   }
   .keypads--item__active {
     box-shadow: none;

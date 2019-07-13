@@ -3,7 +3,6 @@ import { keypads } from "../../bindings/keypads";
 import "./Keypad.scss";
 
 const keypad = props => {
-  console.log(props.activeItem);
   const items = keypads.map((el, ind) => {
     return (
       <div
