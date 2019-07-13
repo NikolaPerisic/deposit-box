@@ -9,9 +9,7 @@ const display = props => {
   return (
     <div
       className={
-        props.backlight
-          ? "panel__display"
-          : "panel__display panel__display--off"
+        props.backlight ? "panel__display" : "panel__display panel__display_off"
       }
     >
       <span>{props.isLocked ? "Locked" : "Unlocked"}</span>

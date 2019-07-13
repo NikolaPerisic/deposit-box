@@ -12,8 +12,8 @@ const keypad = props => {
       <div
         className={
           props.activeItem === el
-            ? "keypads--item keypads--item__active"
-            : "keypads--item"
+            ? "panel__keypads__item panel__keypads__item_active"
+            : "panel__keypads__item"
         }
         key={`${el}-${ind}`}
         onClick={() => props.clickInput(el)}
