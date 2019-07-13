@@ -18,4 +18,8 @@
     border-radius: 3px;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
   }
+  .keypads--item__active {
+    box-shadow: none;
+    color: #f1c40f;
+  }
 }

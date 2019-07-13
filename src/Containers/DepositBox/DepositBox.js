@@ -26,7 +26,7 @@ class DepositBox extends React.Component {
     if (this.props.displayMsg === "Error") {
       playSound("error");
     }
-    if (this.props.isTouched) {
+    if (this.props.isTouched && !this.props.lastKey) {
       this._submitTimer = setTimeout(() => {
         this.props.handleAutoSubmit(
           this.props.code,
@@ -57,10 +57,11 @@ class DepositBox extends React.Component {
     ) {
       return null;
     }
-    playSound();
     if (!this.props.isTouched) {
       this.props.reset();
     }
+    this.props.resetKeyPress();
+    playSound();
     if (this.props.service) {
       clearTimeout(this._submitTimer);
       return this.props.handleUserInput(el);
@@ -84,7 +85,10 @@ class DepositBox extends React.Component {
           message={this.props.displayMsg}
           backlight={this.props.backlightOn}
         />
-        <Keypad clickInput={this.handleKeyPress} />
+        <Keypad
+          clickInput={this.handleKeyPress}
+          activeItem={this.props.lastKey}
+        />
         <div className="panel__serial">S/N: {this.props.serial}</div>
       </div>
     );
@@ -100,16 +104,18 @@ const mapStateToProps = state => {
     backlightOn: state.depositBox.backlightOn,
     code: state.depositBox.code,
     serial: state.depositBox.serialNo,
-    service: state.depositBox.serviceMode
+    service: state.depositBox.serviceMode,
+    lastKey: state.depositBox.key
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     handleUserInput: value => dispatch(actions.handleUserInput(value)),
-    handleLockFromUser: (userInput, status) =>
-      dispatch(asyncActions.handleLockFromUser(userInput, status)),
     reset: () => dispatch(actions.reset()),
     handleBacklight: () => dispatch(actions.handleBacklight()),
+    handleLockFromUser: (userInput, status) =>
+      dispatch(asyncActions.handleLockFromUser(userInput, status)),
+    resetKeyPress: () => dispatch(asyncActions.resetKeyPress()),
     handleAutoSubmit: (code, userInput, status, isBusy, service, serial) =>
       dispatch(
         asyncActions.handleAutoSubmit(

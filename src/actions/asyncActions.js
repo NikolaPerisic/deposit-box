@@ -33,7 +33,6 @@ export const handleAutoSubmit = (
 
 export const handleLockFromUser = (userInput, status) => {
   return dispatch => {
-    console.log(userInput, status);
     if (userInput.length !== 6 || status) {
       dispatch(actions.handleError());
       setTimeout(() => {
@@ -50,7 +49,6 @@ export const handleLockFromUser = (userInput, status) => {
 
 export const handleServiceMode = (userInput, serial) => {
   return dispatch => {
-    console.log("service mode", userInput, serial);
     dispatch(actions.handleValidating());
     setTimeout(() => {
       dispatch(handleValidationCheck(userInput, serial));
@@ -82,5 +80,13 @@ export const handleValidationCheck = (userInput, serial) => {
       .catch(error => {
         console.log(error);
       });
+  };
+};
+
+export const resetKeyPress = () => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(actions.resetKey());
+    }, 200);
   };
 };

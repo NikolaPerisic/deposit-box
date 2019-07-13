@@ -9,3 +9,4 @@ export const UNLOCKING = "UNLOCKING";
 export const SERVICE = "SERVICE";
 export const VALIDATING = "VALIDATING";
 export const BACKLIGHT_OFF = "BACKLIGHT_OFF";
+export const RESET_KEY = "RESET_KEY";

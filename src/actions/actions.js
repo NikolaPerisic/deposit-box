@@ -61,3 +61,8 @@ export const handleBacklight = () => {
     type: actionTypes.BACKLIGHT_OFF
   };
 };
+export const resetKey = () => {
+  return {
+    type: actionTypes.RESET_KEY
+  };
+};

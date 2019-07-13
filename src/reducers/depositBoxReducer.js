@@ -8,7 +8,8 @@ const initialState = {
   code: null,
   serviceMode: false,
   serialNo: 4815162342,
-  displayMsg: "Ready"
+  displayMsg: "Ready",
+  key: null
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +19,8 @@ export default (state = initialState, action) => {
         ...state,
         isTouched: true,
         backlightOn: true,
-        displayMsg: (state.displayMsg += action.payload)
+        displayMsg: state.displayMsg + action.payload,
+        key: action.payload
       };
     case actionTypes.HANDLE_LOCK:
       return {
@@ -87,6 +89,11 @@ export default (state = initialState, action) => {
         backlightOn: false,
         isTouched: false,
         displayMsg: "Ready"
+      };
+    case actionTypes.RESET_KEY:
+      return {
+        ...state,
+        key: null
       };
     default:
       return state;
