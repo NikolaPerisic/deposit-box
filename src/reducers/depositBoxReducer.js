@@ -1,5 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
+// main reducer, initial state
+
 const initialState = {
   isLocked: false,
   isTouched: false,

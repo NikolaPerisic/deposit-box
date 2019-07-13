@@ -6,9 +6,12 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/actions";
 import * as asyncActions from "../../actions/asyncActions";
 import { playSound } from "../../sounds/sounds";
-//
+
+/*
+main container, recieving props and state from redux, sending props to children
+*/
 class DepositBox extends React.Component {
-  //
+  // local timers
   _submitTimer = null;
   _backlightTimer = null;
   //
@@ -20,9 +23,12 @@ class DepositBox extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", el => this.handleKeyPress(el.key));
   }
-
-  componentDidUpdate(prevState) {
-    console.log("comp did update");
+  /*
+  checking the state after update, if error emmits error sound, if device
+  is touched and there is no change in 1.2s dispatching autosubmit to action
+  creator for handling further condition
+  */
+  componentDidUpdate() {
     if (this.props.displayMsg === "Error") {
       playSound("error");
     }
@@ -43,6 +49,7 @@ class DepositBox extends React.Component {
       this.handleDisplayBacklight();
     }
   }
+
   // function for dimming the display after 5 secs of inactivity
   handleDisplayBacklight = () => {
     this._backlightTimer = setTimeout(() => {
@@ -50,9 +57,15 @@ class DepositBox extends React.Component {
       this.props.handleBacklight();
     }, 5000);
   };
+
+  /*
+  handling input coming from both keyboad and click events, catching
+  only valid inputs and processing futher
+  */
   handleKeyPress = el => {
     if (
       this.props.isBusy ||
+      el === " " ||
       (el !== "l" && el !== "L" && el !== "*" && isNaN(el))
     ) {
       return null;
@@ -94,7 +107,7 @@ class DepositBox extends React.Component {
     );
   }
 }
-
+// connect redux state
 const mapStateToProps = state => {
   return {
     isLocked: state.depositBox.isLocked,
@@ -108,6 +121,7 @@ const mapStateToProps = state => {
     lastKey: state.depositBox.key
   };
 };
+//
 const mapDispatchToProps = dispatch => {
   return {
     handleUserInput: value => dispatch(actions.handleUserInput(value)),

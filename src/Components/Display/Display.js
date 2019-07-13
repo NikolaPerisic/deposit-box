@@ -1,6 +1,10 @@
 import React from "react";
 import "./Display.scss";
 
+/*
+display component, gets all props from parent, handling display
+information
+*/
 const display = props => {
   return (
     <div

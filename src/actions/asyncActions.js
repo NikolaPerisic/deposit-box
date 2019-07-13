@@ -1,6 +1,9 @@
 import * as actions from "./actions";
 import axios from "axios";
 
+// async actions
+
+// autosubmit async for handling service mode, unlocking and error
 export const handleAutoSubmit = (
   code,
   userInput,
@@ -13,7 +16,6 @@ export const handleAutoSubmit = (
     if (userInput === "000000" && status) {
       return dispatch(actions.handleService());
     }
-    console.log("service mode", service);
     if (service) {
       return dispatch(handleServiceMode(userInput, serial));
     }
@@ -31,6 +33,11 @@ export const handleAutoSubmit = (
   };
 };
 
+/*
+handle locking when user inputs L button, checking length of input, if device
+is locked, dispatching lock or error to reducer
+*/
+
 export const handleLockFromUser = (userInput, status) => {
   return dispatch => {
     if (userInput.length !== 6 || status) {
@@ -47,7 +54,11 @@ export const handleLockFromUser = (userInput, status) => {
   };
 };
 
-export const handleServiceMode = (userInput, serial) => {
+/*
+if device is in service mode, autosubmit calls this function with user input and
+serial as arguments for handling validation
+*/
+const handleServiceMode = (userInput, serial) => {
   return dispatch => {
     dispatch(actions.handleValidating());
     setTimeout(() => {
@@ -56,7 +67,11 @@ export const handleServiceMode = (userInput, serial) => {
   };
 };
 
-export const handleValidationCheck = (userInput, serial) => {
+/*
+handling api call to provided endpoint, checking if response matches the serial
+no. from device, dispatch unlocking or error
+*/
+const handleValidationCheck = (userInput, serial) => {
   return dispatch => {
     axios
       .get(
@@ -64,7 +79,6 @@ export const handleValidationCheck = (userInput, serial) => {
       ode=${userInput}`
       )
       .then(response => {
-        console.log(response.data.sn, serial);
         if (response.data.sn === serial) {
           dispatch(actions.handleUnlocking());
           setTimeout(() => {
@@ -83,6 +97,7 @@ export const handleValidationCheck = (userInput, serial) => {
   };
 };
 
+// clearing last value enetered from keypad, for styling keypad btns
 export const resetKeyPress = () => {
   return dispatch => {
     setTimeout(() => {

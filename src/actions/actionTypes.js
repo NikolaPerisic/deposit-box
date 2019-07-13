@@ -1,3 +1,5 @@
+// action type constants
+
 export const HANDLE_INPUT = "HANDLE_INPUT";
 export const HANDLE_LOCK = "HANDLE_LOCK";
 export const HANDLE_UNLOCK = "HANDLE_UNLOCK";

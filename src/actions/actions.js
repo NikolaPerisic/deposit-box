@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
+// actions for reducer
+
 export const handleUserInput = value => {
   return {
     type: actionTypes.HANDLE_INPUT,
