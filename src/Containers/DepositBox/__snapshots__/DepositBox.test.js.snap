@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Deposit Box renders without crashing given req props 1`] = `
+<div
+  className="panel"
+>
+  <display
+    backlight={true}
+    isLocked={false}
+    message="Ready"
+  />
+  <keypad
+    activeItem={null}
+    clickInput={[Function]}
+  />
+  <div
+    className="panel__serial"
+  >
+    S/N: 
+  </div>
+</div>
+`;

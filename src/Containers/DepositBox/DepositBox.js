@@ -10,7 +10,7 @@ import { playSound } from "../../sounds/sounds";
 /*
 main container, recieving props and state from redux, sending props to children
 */
-class DepositBox extends React.Component {
+export class DepositBox extends React.Component {
   // local timers
   _submitTimer = null;
   _backlightTimer = null;

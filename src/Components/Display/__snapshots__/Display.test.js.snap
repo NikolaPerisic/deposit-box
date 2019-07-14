@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display component renders without errors 1`] = `
+<div
+  className="panel__display"
+>
+  <span>
+    Unlocked
+  </span>
+  <p>
+    Ready
+  </p>
+</div>
+`;
