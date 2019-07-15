@@ -85,6 +85,7 @@ export class DepositBox extends React.Component {
         this.props.isLocked
       );
     }
+    if (el === "*") return null;
     clearTimeout(this._submitTimer);
     clearTimeout(this._backlightTimer);
     return this.props.handleUserInput(el);
