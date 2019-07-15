@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/deposit-box/static/css/main.54e6814a.chunk.css",
+    "main.js": "/deposit-box/static/js/main.52cafa7a.chunk.js",
+    "main.js.map": "/deposit-box/static/js/main.52cafa7a.chunk.js.map",
+    "runtime~main.js": "/deposit-box/static/js/runtime~main.b9062fa1.js",
+    "runtime~main.js.map": "/deposit-box/static/js/runtime~main.b9062fa1.js.map",
+    "static/js/2.7a991706.chunk.js": "/deposit-box/static/js/2.7a991706.chunk.js",
+    "static/js/2.7a991706.chunk.js.map": "/deposit-box/static/js/2.7a991706.chunk.js.map",
+    "index.html": "/deposit-box/index.html",
+    "precache-manifest.dad21e5255e5cdd7306afcf7f38e5e45.js": "/deposit-box/precache-manifest.dad21e5255e5cdd7306afcf7f38e5e45.js",
+    "service-worker.js": "/deposit-box/service-worker.js",
+    "static/css/main.54e6814a.chunk.css.map": "/deposit-box/static/css/main.54e6814a.chunk.css.map",
+    "static/media/Beep-tone.mp3": "/deposit-box/static/media/Beep-tone.2bc260fb.mp3",
+    "static/media/beep-error.mp3": "/deposit-box/static/media/beep-error.c9d839e1.mp3"
+  }
+}
