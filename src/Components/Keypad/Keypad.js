@@ -1,7 +1,6 @@
 import React from "react";
 import { keypads } from "../../bindings/keypads";
 import "./Keypad.scss";
-
 /*
 Keypad component, gets all props from parent, gets active item
 from props for animation of buttons
