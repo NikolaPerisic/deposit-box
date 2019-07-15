@@ -2,6 +2,10 @@
 
 A Client app that simulates hotel safe deposit-box
 
+## The page is hosted on gh-pages
+
+[Deposit-Box](https://nikolaperisic.github.io/deposit-box/)
+
 ## How to Use
 
 ### Locking:
