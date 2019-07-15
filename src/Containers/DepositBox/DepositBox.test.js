@@ -2,9 +2,8 @@ import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import { DepositBox } from "./DepositBox";
-
 //props
-const props = {
+const defaultProps = {
   isLocked: false,
   displayMsg: "Ready",
   isTouched: false,
@@ -17,9 +16,9 @@ const props = {
 };
 
 describe("Deposit Box", () => {
-  const wrapper = shallow(<DepositBox {...props} />);
   //
   it("renders without crashing given req props", () => {
+    const wrapper = shallow(<DepositBox {...defaultProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
