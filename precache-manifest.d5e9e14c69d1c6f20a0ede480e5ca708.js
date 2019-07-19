@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c13c8659fded083f8b05afff8d08dc8",
+    "revision": "6737f54eab4fd799a340f604985c5c66",
     "url": "/deposit-box/index.html"
   },
   {
-    "revision": "4dabbbbc7cca842a4dea",
+    "revision": "59d7403302272be60e61",
     "url": "/deposit-box/static/css/main.54e6814a.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/deposit-box/static/js/2.7a991706.chunk.js"
   },
   {
-    "revision": "4dabbbbc7cca842a4dea",
-    "url": "/deposit-box/static/js/main.52cafa7a.chunk.js"
+    "revision": "59d7403302272be60e61",
+    "url": "/deposit-box/static/js/main.ce8c31bd.chunk.js"
   },
   {
     "revision": "e4146bd47591717c50bd",
