@@ -22,6 +22,8 @@ export class DepositBox extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener("keydown", el => this.handleKeyPress(el.key));
+    clearTimeout(this._submitTimer);
+    clearTimeout(this._backlightTimer);
   }
   /*
   checking the state after update, if error emmits error sound, if device
